@@ -1,15 +1,22 @@
 <h1>新規投稿</h1>
 
-<%= form_with model: @list, url:'/lists' do |f| %>
+<%= form_with model: @item, url:'/items' do |f| %>
 
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
-  
-  <h4>本文</h4>
-  <%= f.text_area :body %>
-  <!-- 追加部分 -->
-  <h4>画像</h4>
+  <h4>商品画像</h4>
   <%= f.file_field :image, accept: "image/*" %>
-  <%= f.submit '投稿' %>
-  
+
+  <h4>商品名</h4>
+  <%= f.text_field :name %>
+
+  <h4>商品説明</h4>
+  <%= f.text_area :introoduction %>
+
+  <h4>ジャンル</h4>
+  <!--%= f.select : :genre_id,[] include_blank: "選択して下さい" %-->
+
+  <h4>税抜価格</h4>
+  <%= f.text_field :price %>円
+
+  <p><%= f.submit '新規登録' %></p>
+
 <% end %>

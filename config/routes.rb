@@ -6,11 +6,16 @@ get "/about" => "homes#about"
   #devise_for :admins
   #devise_for :customers
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
+namespace :admin do
 #item
-get '/admin/items' => 'admin/items#index'
-resources :items, only:[:new, :index, :show, :create, :destroy ,:edit]
-get '/admin/items/new' => 'admin/items#new'
+  resources :items, only:[:new, :index, :show, :create, :destroy ,:edit]
+#genre
+  resources :genres,only:[:new, :index, :create, :destroy ,:edit,:update]
+
+end
+
+
+
 
 # 顧客用
 # URL /customers/sign_in ...

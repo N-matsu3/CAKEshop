@@ -1,0 +1,31 @@
+<div class="flash">
+  <%= flash[:notice] %>
+</div>
+
+<h1>ジャンル一覧・追加</h1>
+<%= form_with model: @genre, url: admin_genres_path do |f| %>
+<p>ジャンル名　<%= f.text_field :name %> <%= f.submit '新規登録' %></p>
+<% end %>
+
+
+<h4>ジャンル</h4>
+<% @genres.each do |genre| %>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <%= genre.name %>
+      </td>
+      <td>
+        <%= link_to "編集する","/admin/genres/#{genre.id}/edit" %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<% end %>
