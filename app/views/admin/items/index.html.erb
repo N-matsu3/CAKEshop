@@ -1,20 +1,30 @@
+<div class="flash">
+  <%= flash[:notice] %>
+</div>
+
 <h1>商品一覧</h1>
 
-<tbody>
- <% @items.each do |item| %>
-      <tr>
-       <td><%= item.id %></br>
-            <% end %>
-        </td>
-        <td><!--%= link_to item_path(item) do %-->
-          <%= item.name %>
-            <% end %>
-          </td>
-          <td><%= item.price %></br>
-            <% end %>
-          </td>
-        <td><%= item.genre_id %></td>
-            <% end %>
-      </tr>
 
-  </tbody>
+ <table>
+  <thead>
+   <tr>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
+    </tr>
+   </thead>
+   <tbody>
+    <% @items.each do |item| %>
+      <tr>
+       <td><%= item.id %></td>
+        <td><%= link_to admin_item_path(item) do %>
+          <%= item.name %>
+          <% end %></td>
+          <td><%= item.price %></td>
+        <td><%=item.genre_id %></td>
+         <%#= f.collection_select :origin_id, Origin.all, :id, :name %>
+      </tr>
+<% end %>
+   </tbody>
+  </table>

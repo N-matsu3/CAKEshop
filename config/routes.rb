@@ -8,7 +8,7 @@ get "/about" => "homes#about"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 namespace :admin do
 #item
-  resources :items, only:[:new, :index, :show, :create, :destroy ,:edit]
+  resources :items,only:[:new, :index, :show, :create, :destroy ,:edit, :update]
 #genre
   resources :genres,only:[:new, :index, :create, :destroy ,:edit,:update]
 
