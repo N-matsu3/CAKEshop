@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+
+###
+  namespace :public do
+#customers
+      resources :customers
+      get '/customers' => 'public/customers'
+  end
+
 #homes
 root to: "homes#top"
 get "/about" => "homes#about"
@@ -6,6 +14,8 @@ get "/about" => "homes#about"
   #devise_for :admins
   #devise_for :customers
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+###
 namespace :admin do
 #item
   resources :items,only:[:new, :index, :show, :create, :destroy ,:edit, :update]
