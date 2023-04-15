@@ -1,0 +1,22 @@
+<h1>会員一覧</h1><%#= link_to "編集する","/customers/#{@customer.id}/edit" %>
+
+ <table>
+  <thead>
+    <tr>
+     <th>会員ID</th>
+     <th>氏名</th>
+     <th>メールアドレス</th>
+     <th>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |customer| %>
+    <tr>
+      <td><%= customer.id %></td>
+　    <td><%#= customer.last_name %> <%#= customer.first_name %></td>
+      <td><%= customer.email %></td>
+      <td><%= customer.is_deleted %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

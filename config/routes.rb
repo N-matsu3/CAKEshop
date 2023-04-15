@@ -1,15 +1,19 @@
 Rails.application.routes.draw do
 
-###
-  namespace :public do
-#customers
-      resources :customers
-      get '/customers' => 'public/customers'
+  namespace :admin do
+    get 'customers/index'
+    get 'customers/show'
+    get 'customers/edit'
   end
-
 #homes
-root to: "homes#top"
-get "/about" => "homes#about"
+  root to: "public/homes#top"
+  get "about" => "public/homes#about"
+
+###
+#customers
+  resources :customers
+  get "/my_page" => "public/customers#show"
+
 
   #devise_for :admins
   #devise_for :customers
@@ -21,9 +25,9 @@ namespace :admin do
   resources :items,only:[:new, :index, :show, :create, :destroy ,:edit, :update]
 #genre
   resources :genres,only:[:new, :index, :create, :destroy ,:edit,:update]
-
+#customers
+  resources :customers
 end
-
 
 
 
