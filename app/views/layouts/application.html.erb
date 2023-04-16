@@ -25,10 +25,10 @@
             <ul class="navbar-nav ml-auto">
             <% if customer_signed_in? %>
             <li class="nav-item">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
-              <%= link_to '投稿フォーム', new_post_image_path, class: 'nav-link text-dark' %>
+              <%#= link_to '投稿フォーム', new_post_image_path, class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
               <%= link_to 'マイページ', customer_path(current_customer.id), class: 'nav-link text-dark' %>
@@ -49,7 +49,8 @@
     <main class="mb-auto">
     <%= yield %>
     </main>
-    <footer class="bg-dark text-white pt-5 pb-4">
+    <!--フッターの背景をホワイトにしている！！後で編集する！-->
+    <footer class="bg-white text-dark pt-5 pb-4">
       <div class="container">
         <div class="row no-gutters">
           <div class="col-md-4">
