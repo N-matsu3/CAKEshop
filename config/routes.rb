@@ -21,15 +21,13 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-
 #homes
   root to: "homes#top"
   get "about" => "homes#about"
 
-###
 #customers
-  resources :customers
-  get "/my_page" => "customers#show"
+  resources :customers,only:[:new, :index, :create, :destroy ,:edit,:update]
+  #get "/my_page" => "customers#show"
 
  end
   #devise_for :admins
