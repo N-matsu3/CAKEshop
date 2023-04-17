@@ -28,7 +28,6 @@ Rails.application.routes.draw do
 #customers
   resources :customers,only:[:new, :index, :create, :destroy ,:edit,:update]
   #get "/my_page" => "customers#show"
-
  end
   #devise_for :admins
   #devise_for :customers
