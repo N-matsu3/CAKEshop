@@ -13,21 +13,17 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
-
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-  end
-
   scope module: :public do
 #homes
   root to: "homes#top"
   get "about" => "homes#about"
 
 #customers
-  resources :customers,only:[:new, :index, :create, :destroy ,:edit,:update]
-  #get "/my_page" => "customers#show"
+  resources :customers,only:[:new, :show, :create, :destroy ,:edit,:update]
+  get "/my_page" => "customers#show"
+  get "information/edit" => "customers#edit"
+  patch "information" => "customers#update"
+
  end
   #devise_for :admins
   #devise_for :customers
@@ -42,8 +38,6 @@ namespace :admin do
 #customers
   resources :customers
 end
-
-
 
 
 end
