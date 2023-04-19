@@ -1,0 +1,13 @@
+
+<div>
+<% if @item.image.attached? %>
+  <%= image_tag @item.image, size: "150x150" %>
+<% else %>
+  <%= image_tag 'no_image', size: "150x150" %>
+<% end %>
+</div>
+
+<h4><%= @item.name %></h4>
+<div><%= @item.introduction %></div>
+<b>税込価格（税抜価格）（<%= @item.price %>）</b>
+
