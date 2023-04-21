@@ -11,3 +11,8 @@
 <div><%= @item.introduction %></div>
 <b>税込価格（税抜価格）（<%= @item.price %>）</b>
 
+<%= form_with model: @cart_item, url: cart_items_path do |f| %>
+<%= f.select :amount, *[1..10],{ include_blank: '個数選択'} %>
+<%= f.hidden_field :item_id, :value => @item.id %>
+<%= f.submit 'カートに入れる' %>
+<% end %>

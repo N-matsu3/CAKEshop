@@ -2,30 +2,25 @@
 
 
  <table>
-  <thead>
-   <tr>
-      <th>商品画像<%#= @item.image %></th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-    </tr>
-   </thead>
-   <tbody>
+  <% @items.each do |item| %>
+    <tr>
 
-      <% @items.each do |item| %>
+         <td><% if item.image.attached? %>
+                <%= image_tag item.image, size: "150x150" %>
+             <% else %>
+                <%= image_tag 'no_image', size: "150x150" %>
+             <% end %></td>
+          </tr>
 
-      <tr>
-        <td>
-          <% if item.image.attached? %>
-            <%= image_tag item.image, size: "150x150" %>
-          <% else %>
-            <%= image_tag 'no_image', size: "150x150" %>
-          <% end %>
-        </td>
-        <td><%= link_to item_path(item) do %>
+     <tr>
+
+       <td><%= link_to item_path(item) do %>
           <%= item.name %>
           <% end %></td>
-          <td><%= item.price %></td>
-      </tr>
+        </tr>
+    <tr>
+      <td>￥<%= item.price %></td>
+    </tr>
 <% end %>
    </tbody>
   </table>
