@@ -4,6 +4,12 @@ class Public::CartItemsController < ApplicationController
      @cart_item = CartItem.new
   end
 
+  def update
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update(cart_item_params)
+    redirect_to cart_items_path
+  end
+
   def create
      increase_or_create(params[:cart_item][:item_id])
      redirect_to cart_items_path, notice: 'カートに追加しました'
@@ -15,14 +21,15 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
-    @cart_item.destroy
-    redirect_to request.referer, notice: 'Successfully deleted one cart item'
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.destroy(cart_item_params)
+    redirect_to cart_items_path, notice: 'Successfully deleted one cart item'
   end
 
 private
 
-  def set_cart_item
-    @cart_item = current_customer.cart_items.find(params[:id])
+  def cart_item_params
+    params.require(:cart_item).permit(:amount, :item_id)
   end
 
   def increase_or_create(item_id)

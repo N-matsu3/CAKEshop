@@ -13,30 +13,25 @@
       </tr>
     </thead>
     <tbody>
-       <% @cart_items.each do |cart_item| %>
+
       <tr>
+         <% @cart_items.each do |cart_item| %>
         <td><% if cart_item.item.image.attached? %>
-      <%= image_tag cart_item.item.image, size: "50x50" %>
-    <% else %>
-      <%= image_tag 'no_image', size: "50x50" %>
-    <% end %><%= cart_item.item.name %></td>
-        <td><%= number_to_currency(cart_item.item.price, unit: "¥", strip_insignificant_zeros: true) %></td>
-        <td><%= form_with model: cart_item, url: cart_items_path do |f| %>
+                <%= image_tag cart_item.item.image, size: "50x50" %>
+            <% else %>
+                <%= image_tag 'no_image', size: "50x50" %>
+            <% end %>
+            <%= cart_item.item.name %></td>
+          <td><%= number_to_currency(cart_item.item.price, unit: "¥", strip_insignificant_zeros: true) %></td>
+        <td><%= form_with model: cart_item, url: @cart_items_path do |f| %>
     <%= f.select :amount, *[1..10] %>
-    <%#= f.hidden_field :item_id, :value => @item.id %>
+    <%= f.hidden_field :item_id, :value => cart_item.item.id %>
     <%= f.submit '変更' %>
     <% end %></td>
         <td></td>
-        <td></td>
+        <td> <%= link_to "削除する", cart_items_path(@cart_item.id), method: :delete %></td>
       </tr>
     <tbody>
 </table>
  <p></p>
-<p> </p>
-<p> <%= link_to decrease_cart_item_path(cart_item), data: { "turbo-method": :patch }, class: "flex justify-center" do %></p>
-<% end %>
-<p></p>
-
-    <p><%= link_to increase_cart_item_path(cart_item), data: { "turbo-method": :patch }, class: "flex justify-center" do %></p>
-       <% end %>
-     <% end %>
+ <% end %>

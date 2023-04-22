@@ -9,7 +9,7 @@
 
 <h4><%= @item.name %></h4>
 <div><%= @item.introduction %></div>
-<b>税込価格（税抜価格）（<%= @item.price %>）</b>
+<b>税込価格（税抜価格）<%= @item.price %> *1.1（<%= @item.price %>）</b>
 
 <%= form_with model: @cart_item, url: cart_items_path do |f| %>
 <%= f.select :amount, *[1..10],{ include_blank: '個数選択'} %>
