@@ -1,0 +1,18 @@
+<h4>注文情報入力</h4>
+
+<b>支払方法</b>
+<%= form_with model: @order, url: orders_path do |f| %>
+  <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+  <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %></br>
+
+  <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+  <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
+
+
+<b>お届け先</b>
+  <%= f.radio_button :postal_code,:address, Customer.postal_code %>
+  <%= f.label :postal_code,:address,"ご自身の住所"%>
+  <%#= f.select :プロパティ名, options_from_collection_for_select(, :フォームで送る値(メソッド), :セレクトボックスに表示する値(メソッド)) %>
+  <%#= f.select :プロパティ名, options_from_collection_for_select(モデル, :フォームで送る値(メソッド), :セレクトボックスに表示する値(メソッド)) %>
+  <%#= f.select :address_id, options_from_collection_for_select(Address.all, :id, :name) %>
+<% end %>

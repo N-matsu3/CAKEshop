@@ -32,9 +32,11 @@ Rails.application.routes.draw do
   resources :items,only:[:index, :show]
 #カート
   #get "cart_items" => "cart_items#index"
-
   resources :cart_items ,only:[:index, :update, :destroy, :delete, :destroy_all, :create]
-
+#order
+  get "orders/comfirm" => "orders#comfirm"
+  get "orders/complete" => "orders#complete"
+  resources :orders
 
  end
   #devise_for :admins
