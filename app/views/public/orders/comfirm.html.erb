@@ -1,4 +1,40 @@
 <h4>注文情報確認</h4>
+<%= form_with model: @order, url:  orders_complete_path do |f| %>
+<table>
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th>単価(税込み)</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th> </th>
 
+      </tr>
+    </thead>
+    <tbody>
+        <% @cart_items.each do |cart_item| %>
+      <tr>
 
-<diV><%= link_to "注文を確定する", orders_complete_path %></diV>
+        <td><% if cart_item.item.image.attached? %>
+                <%= image_tag cart_item.item.image, size: "50x50" %>
+            <% else %>
+                <%= image_tag 'no_image', size: "50x50" %>
+            <% end %>
+            <%= cart_item.item.name %></td>
+
+        <td><%= cart_item.item.with_tax_price %></td>
+
+        <td><%= cart_item.amount %></td>
+
+        <td><%= cart_item.subtotal %></td>
+
+        <td> </td>
+      </tr>
+
+        <% end %>
+    <tbody>
+</table>
+  ¥<%= @total.round.to_s(:delimited)%>
+<diV><%#= form_with model: @order, url:  orders_complete_path do |f| %>
+      <%= f.submit '注文を確定する' %>
+     <% end %></p></diV>

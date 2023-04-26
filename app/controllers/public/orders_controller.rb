@@ -9,10 +9,15 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     if params[:order][:select_address] == "0"
       @order.shipping_name = current_customer.last_name + current_customer.first_name
-      @order.shipping_address = current_customer.customer_address
+      @order.shipping_address = current_customer.address
       @order.post_code = current_customer.postal_code
     elsif params[:order][:select_address] == "1"
     end
+
+     @cart_items = current_customer.cart_items
+     @cart_item = CartItem.new
+     @total = @cart_items.inject(0) {|sum,item| sum + item.subtotal }
+
   end
 
   def create
@@ -25,5 +30,18 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders
+
   end
+
+  def show
+    @order = current_customer.orders.find(params[:id])
+  end
+
+
+private
+  def order_params
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name)
+  end
+
 end

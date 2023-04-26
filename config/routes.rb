@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'orders/show'
+  end
   namespace :public do
     get 'cart_items/index'
   end
@@ -31,12 +34,15 @@ Rails.application.routes.draw do
 #items
   resources :items,only:[:index, :show]
 #カート
-  #get "cart_items" => "cart_items#index"
+  delete "cart_items/destroy_all" => "cart_items#destroy_all", as: "destroy_all_cart_items"
   resources :cart_items ,only:[:index, :update, :destroy, :delete, :destroy_all, :create]
+
 #order
-  get "orders/comfirm" => "orders#comfirm"
-  get "orders/complete" => "orders#complete"
-  resources :orders
+  get "orders" => "orders#index"
+  post "orders/comfirm" => "orders#comfirm"
+  post "orders/complete" => "orders#complete"
+  resources :orders,only:[:new, :index, :update, :destroy, :create, :index, :show]
+
 
  end
   #devise_for :admins
@@ -51,6 +57,8 @@ namespace :admin do
   resources :genres,only:[:new, :index, :create, :destroy ,:edit,:update]
 #customers
   resources :customers
+#orders
+  resources :orders,only:[:show, :update]
 end
 
 

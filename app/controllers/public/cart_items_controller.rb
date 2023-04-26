@@ -2,6 +2,7 @@ class Public::CartItemsController < ApplicationController
   def index
      @cart_items = current_customer.cart_items
      @cart_item = CartItem.new
+     @total = @cart_items.inject(0) {|sum,item| sum + item.subtotal }
   end
 
   def update
@@ -11,6 +12,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
+     binding.pry
      increase_or_create(params[:cart_item][:item_id],params[:cart_item][:amount].to_i)
      redirect_to cart_items_path, notice: 'カートに追加しました'
   end
@@ -24,6 +26,11 @@ class Public::CartItemsController < ApplicationController
     @cart_item = CartItem.find(params[:id])
     @cart_item.destroy
     redirect_to cart_items_path, notice: '１つのカート内商品を削除しました'
+  end
+
+  def destroy_all
+      current_customer.cart_items.destroy_all
+      redirect_to cart_items_path, notice: 'カートを空にしました'
   end
 
 private

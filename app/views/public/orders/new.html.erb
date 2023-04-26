@@ -2,7 +2,7 @@
 
 <div>
   <b>支払方法</b>
-  <%= form_with model: @order, url: orders_path do |f| %>
+  <%= form_with model: @order, url: orders_comfirm_path do |f| %>
     <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
     <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %></br>
 
@@ -15,9 +15,6 @@
    <%= f.radio_button :select_address, 0 %>ご自身のお届け先
     <p>〒<%= current_customer.postal_code %>　<%= current_customer.address %></br>
     <%= current_customer.last_name %><%= current_customer.first_name %></p>
-
-  <%#= f.radio_button :post_code %>
-  <%#= f.label :post_code "ご自身の住所"%>
 
    <%= f.radio_button :select_address, 1 %>新しいお届け先
 <table>
