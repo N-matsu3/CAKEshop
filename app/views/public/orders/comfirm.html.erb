@@ -1,5 +1,4 @@
 <h4>注文情報確認</h4>
-<%= form_with model: @order, url:  orders_complete_path do |f| %>
 <table>
     <thead>
       <tr>
@@ -35,6 +34,12 @@
     <tbody>
 </table>
   ¥<%= @total.round.to_s(:delimited)%>
-<diV><%#= form_with model: @order, url:  orders_complete_path do |f| %>
-      <%= f.submit '注文を確定する' %>
+
+<diV><%= form_with model: @order, url:  orders_path do |f| %>
+      <%= f.hidden_field :customer_id, :value => current_customer.id %>
+      <%= f.hidden_field :post_code, :value =>  @order.post_code %>
+      <%= f.hidden_field :shipping_address, :value => @order.shipping_address %>
+      <%= f.hidden_field :shipping_name, :value => @order.shipping_name %>
+      <%= f.hidden_field :payment_method, :value => @order.payment_method %>
+    　<%= f.submit '注文を確定する' %>
      <% end %></p></diV>

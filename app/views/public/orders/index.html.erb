@@ -1,7 +1,7 @@
 <h4>注文履歴一覧</h4>
  <% @orders.each do |order| %>
    <%= order.created_at%>
-   <%#= order.post_code%>
-   <%#= order.shipping_address%>
-   <%#= order.shipping_name%>
+   <%= order.post_code%>
+   <%= order.shipping_address%>
+   <%= order.shipping_name%>
  <% end %>

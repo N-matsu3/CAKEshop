@@ -38,7 +38,6 @@ Rails.application.routes.draw do
   resources :cart_items ,only:[:index, :update, :destroy, :delete, :destroy_all, :create]
 
 #order
-  get "orders" => "orders#index"
   post "orders/comfirm" => "orders#comfirm"
   post "orders/complete" => "orders#complete"
   resources :orders,only:[:new, :index, :update, :destroy, :create, :index, :show]
@@ -58,7 +57,7 @@ namespace :admin do
 #customers
   resources :customers
 #orders
-  resources :orders,only:[:show, :update]
+  resources :orders,only:[:show, :update ]
 end
 
 
