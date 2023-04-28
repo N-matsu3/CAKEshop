@@ -22,6 +22,7 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    #1:Nの関係にあるcustomer
     @order.customer_id = current_customer.id
 
     if @order.save
@@ -45,6 +46,7 @@ class Public::OrdersController < ApplicationController
 
   def index
     @orders = current_customer.orders
+    
 
   end
 
