@@ -39,7 +39,7 @@ Rails.application.routes.draw do
 
 #order
   post "orders/comfirm" => "orders#comfirm"
-  post "orders/complete" => "orders#complete"
+  get "orders/complete" => "orders#complete"
   resources :orders,only:[:new, :index, :update, :destroy, :create, :index, :show]
 
 

@@ -22,8 +22,16 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @order.postage = 800
     #1:Nの関係にあるcustomer
     @order.customer_id = current_customer.id
+    #請求金額を出す記述
+    @cart_items = current_customer.cart_items
+    @total_payment = 0
+    @cart_items.each do |cart_item|
+    @total_payment += cart_item.amount * cart_item.item.price
+    end
+    @order.total_payment = @total_payment
 
     if @order.save
       current_customer.cart_items.each do |cart_item|
@@ -43,17 +51,21 @@ class Public::OrdersController < ApplicationController
     end
   end
 
+def complete
+end
+
 
   def index
     @orders = current_customer.orders
-    
 
   end
 
   def show
-   # @order = current_customer.orders.find(params[:id])
-  end
 
+    @order = Order.find(params[:id])
+    @order_details = OrderDetail.all
+   
+  end
 
 private
   def order_params

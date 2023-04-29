@@ -76,6 +76,11 @@
           </div>
         </div>
       </nav>
+      <div>
+        <% if customer_signed_in? %>
+        ようこそ、<%= current_customer.last_name%>さん!
+        <% end %>
+      </div>
     </header>
     <main class="mb-auto">
     <%= yield %>
