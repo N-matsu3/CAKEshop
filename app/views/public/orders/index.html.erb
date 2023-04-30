@@ -6,7 +6,6 @@
    <th>配送先</th>
    <th>注文商品</th>
    <th>支払金額</th>
-   <!--<th>ステータス</th> -->
    <th>注文詳細</th>
   </tr>
  </thead>
@@ -19,12 +18,11 @@
        <%= order.shipping_name%>
    </td>
    <td><% order.order_details.each do |order_detail| %>
-       <%= order_detail.item.name %><br>
+       <%= order_detail.item.name %>
        <% end %>
-   </td>    
+   </td>
 
-   <td><%= order.total_payment%></td>
-    <!--<td></td> -->
+   <td><%= order.total_payment %></td>
    <td><%= link_to "表示する", order_path(order) %></td>
   </tr>
    <% end %>

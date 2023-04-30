@@ -25,8 +25,9 @@ class Public::OrdersController < ApplicationController
     @order.postage = 800
     #1:Nの関係にあるcustomer
     @order.customer_id = current_customer.id
-    #請求金額を出す記述
     @cart_items = current_customer.cart_items
+    
+    #請求金額を出す記述
     @total_payment = 0
     @cart_items.each do |cart_item|
     @total_payment += cart_item.amount * cart_item.item.price
@@ -37,7 +38,8 @@ class Public::OrdersController < ApplicationController
       current_customer.cart_items.each do |cart_item|
         order_detail = OrderDetail.new
         order_detail.item_id = cart_item.item_id
-        order_detail.order_id = cart_item.customer_id
+        #苦戦したところ↓
+        order_detail.order_id = @order.id
         order_detail.quantity = cart_item.amount
         order_detail.price = cart_item.item.with_tax_price
         order_detail.save
@@ -57,14 +59,12 @@ end
 
   def index
     @orders = current_customer.orders
-
   end
 
   def show
-
     @order = Order.find(params[:id])
-    @order_details = OrderDetail.all
-   
+    @total_payment
+
   end
 
 private

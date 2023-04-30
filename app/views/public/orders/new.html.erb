@@ -9,7 +9,6 @@
     <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
     <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
 
-</div>
 <div>
 <div>お届け先</div>
    <%= f.radio_button :select_address, 0 %>ご自身のお届け先
@@ -23,5 +22,6 @@
   <tr><th>宛名</th> <td><%= f.text_field:shipping_name %></td></tr>
 </table>
 <%= f.submit '確認画面へ進む' %></p>
+</div>
 <% end %>
 </div>

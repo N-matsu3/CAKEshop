@@ -8,20 +8,20 @@
                          <%= @order.shipping_address %></br>
                          <%= @order.shipping_name %></td></tr>
   <tr><th>支払方法</th><td><%= @order.payment_method %></td></tr>
-  <tr><th></th><td></td></tr>
  </table>
 </div>
 
 <div>
  <h5>請求情報</h5>
  <table>
-  <tr><th>商品合計</th>　<td><%= @order.created_at.strftime('%Y/%m/%d') %></td></tr>
+  <tr><th>商品合計</th>　<td><%= @order.total_payment %></td></tr>
   <tr><th>配送料</th><td><%= @order.postage %></td></tr>
-  <tr><th>ご請求額</th><td><%= @order.total_payment %></td></tr>
-  <tr><th></th><td></td></tr>
+  <tr><th>ご請求額</th><td><%= @order.total_payment + @order.postage %></td></tr>
  </table>
 </div>
+
 <div>
+ <h5>注文内容</h5>
 <table>
  <thead>
   <tr>
@@ -32,13 +32,13 @@
   </tr>
  </thead>
  <tbody>
-<% @order_details.each do |order_detail| %>
+<% @order.order_details.each do |order_detail| %>
   <tr>
    <td><%= order_detail.item.name %></td>
    <td><%= order_detail.price %></td>
    <td><%= order_detail.quantity %></td>
 
-   <td><%= @order.total_payment%></td>
+   <td><%= order_detail.price * order_detail.quantity %></td>
   </tr>
 <% end %>
  </tbody>
