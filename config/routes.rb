@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+
   scope module: :public do
 #homes
   root to: "homes#top"
@@ -52,6 +53,7 @@ Rails.application.routes.draw do
 ###
 namespace :admin do
   root to: "homes#top"
+  #get "sign_up" => "registrations#new"
 #item
   resources :items,only:[:new, :index, :show, :create, :destroy ,:edit, :update]
 #genre

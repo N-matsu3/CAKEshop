@@ -1,12 +1,29 @@
-<h1>naganoCake</h1>
-<p> <%= link_to about_path do %>
-        About
-       <% end %></p>
 
-<p> <%= link_to new_customer_registration_path do %>
-       Sign up
-       <% end %></p>
+<div>ようこそ、ながのCAKEへ！</br>
+     このサイトは、ケーキ販売のECサイトになります。</br>
+     会員ではない方も商品の閲覧はできますが、</br>
+     購入には会員登録が必要になります。</div>
 
-<p> <%= link_to new_customer_session_path do %>
-       Log in
-       <% end %></p>
+<h3>新着商品</h3>
+
+<table>
+  <% @items.each do |item| %>
+    <tr>
+       <td><% if item.image.attached? %>
+             <%= image_tag item.image, size: "150x150" %>
+           <% else %>
+             <%= image_tag 'no_image', size: "150x150" %>
+            <% end %>
+        </td>
+    </tr>
+     <tr>
+       <td><%= link_to item_path(item) do %>
+          <%= item.name %>
+          <% end %></td>
+        </tr>
+    <tr>
+      <td>￥<%= item.with_tax_price %></td>
+    </tr>
+<% end %>
+   </tbody>
+  </table>

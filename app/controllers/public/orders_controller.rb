@@ -7,6 +7,7 @@ class Public::OrdersController < ApplicationController
 
   def comfirm
     @order = Order.new(order_params)
+    @order.postage = 800
     if params[:order][:select_address] == "0"
       @order.shipping_name = current_customer.last_name + current_customer.first_name
       @order.shipping_address = current_customer.address
@@ -26,7 +27,7 @@ class Public::OrdersController < ApplicationController
     #1:Nの関係にあるcustomer
     @order.customer_id = current_customer.id
     @cart_items = current_customer.cart_items
-    
+
     #請求金額を出す記述
     @total_payment = 0
     @cart_items.each do |cart_item|
