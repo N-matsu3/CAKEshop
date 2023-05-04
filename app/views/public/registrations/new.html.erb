@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2>新規会員登録</h2>
 
 <%= form_with model:@customer, url: customer_registration_path do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -43,15 +43,15 @@
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :パスワード %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length %> 文字以上)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :パスワード（確認用） %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
@@ -62,4 +62,5 @@
 <% end %>
 
 <p>既に登録済みの方</p>
-<%= render "devise/shared/links" %>
+ <%= link_to 'こちら', new_customer_session_path %>からログインしてください。
+<%#= render "devise/shared/links" %>
