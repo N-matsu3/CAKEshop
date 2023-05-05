@@ -3,11 +3,17 @@
 <div class="container-fluid">
   <div class="row">
 
+    <div class="mt-5 col-3">
+        <div class="sidebar">
+        <!--今回は時間が足りず実装していないが「ジャンル検索部分」-->
+        </div>
+      </div>
+
   <div class="mt-5 ml-1 col-4">
-    <h1>商品一覧</h1>
-      <div class="mt-3 mx-auto col d-flex">
+    <h3><b>商品一覧</b><small>(全<%= @items.all.count %>件）</small></h3>
+      <div class="mt-3 ml-1 col-8 d-flex">
         <% @items.each do |item| %>
-          <div class="mt-3 col flex-wrap">
+          <div class="mt-3 col">
 
       <% if item.image.attached? %>
         <%= image_tag item.image, size: "150x150" %>
