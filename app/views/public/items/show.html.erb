@@ -1,33 +1,32 @@
-<!DOCTYPE html>
-<html>
+
 <div class="container-fluid">
   <div class="row">
-      <div class="mt-5 col-3">
-        <div class="sidebar">
+    <div class="mt-5 col-3 mx-auto">
+      <div class="sidebar">
         <!--今回は時間が足りず実装していないが「ジャンル検索部分」-->
-        </div>
       </div>
+    </div>
 
-        <div class="mt-5 mx-auto col-3">
+    <div class="mt-5 col-2 mx-auto">
         <% if @item.image.attached? %>
           <%= image_tag @item.image, size: "150x150" %>
         <% else %>
           <%= image_tag 'no_image', size: "150x150" %>
         <% end %>
         </div>
-        <div class="mt-5 col-6">
-        <h4><b><%= @item.name %></b></h4>
-        <div><%= @item.introduction %></div>
-          <div class="mt-3 mb-3">
-            <b>￥<%=  @item.with_tax_price %></b><small>（税込）</small>
+    <div class="mt-5 mx-auto col-6 offset-1">
+          <h4><b><%= @item.name %></b></h4>
+          <div><%= @item.introduction %></div>
+            <div class="mt-3 mb-3">
+              <b>￥<%=  @item.with_tax_price %></b><small>（税込）</small>
+            </div>
+          <div class="d-flex flex-row">
+          <%= form_with model: @cart_item, url: cart_items_path do |f| %>
+          <%= f.select :amount, *[1..10],{ include_blank: '個数選択'} %>
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          <%= f.submit 'カートに入れる' ,class: "btn btn-success btn-sm "%>
+          <% end %>
           </div>
-        <div class="d-flex flex-row">
-        <%= form_with model: @cart_item, url: cart_items_path do |f| %>
-        <%= f.select :amount, *[1..10],{ include_blank: '個数選択'} %>
-        <%= f.hidden_field :item_id, :value => @item.id %>
-        <%= f.submit 'カートに入れる' ,class: "btn btn-success btn-sm "%>
-        <% end %>
-        </div>
-        </div>
+    </div>
   </div>
 </div>

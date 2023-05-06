@@ -12,7 +12,9 @@
 
 <% @order_details.each do |order_detail| %>
   <tr>
-   <td><%= order_detail.created_at.strftime('%Y/%m/%d/%T') %></td>
+   <td><%= link_to admin_order_path(order_detail.id) do%>
+       <%= order_detail.created_at.strftime('%Y/%m/%d/%T') %>
+       <% end %></td>
    <td><%= order_detail.order.customer.last_name %><%= order_detail.order.customer.first_name %></td>
    <td><%= order_detail.quantity %></td>
   </tr>
