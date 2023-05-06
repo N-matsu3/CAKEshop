@@ -1,5 +1,13 @@
 class Admin::HomesController < ApplicationController
   def top
-    @order_details = OrderDetail.all
+    @orders = Order.all
+    #@order.id = @order_detail(:order_id)
+
+
+      #@total_quantity += order_detail.quantity
+
+
+    #@order.total_quantity = @total_quantity
+
   end
 end
