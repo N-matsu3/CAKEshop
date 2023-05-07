@@ -2,13 +2,9 @@
   <div class="row">
     <div class="col-12 mx-auto px-3 mt-5">
 
-      <div class="flash">
-        <%= flash[:notice] %>
-      </div>
-
       <h4>商品一覧</h4>
 
-       <%= link_to '「+」', new_admin_item_path %>
+       <%= link_to '新規追加', new_admin_item_path, class: "btn btn-success" %>
 
        <table class="table">
         <thead class="thead-light">
@@ -32,6 +28,7 @@
           <% end %>
          </tbody>
         </table>
+        <%= paginate @items %>
     </div>
   </div>
 </div>

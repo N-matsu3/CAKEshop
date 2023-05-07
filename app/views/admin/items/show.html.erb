@@ -1,4 +1,4 @@
-<h1>商品詳細</h1>
+<h3>商品詳細</h3>
 
 <div><% if @item.image.attached? %>
         <%= image_tag @item.image, size: "150x150" %>
@@ -9,7 +9,7 @@
 <div>商品名　<%= @item.name %></div>
 <div>商品説明　<%= @item.introduction %></div>
 <div>ジャンル　</div>
-<div>税込価格（税抜価格）（<%= @item.price %>）</div>
+<div>税込価格（税抜価格）<%= @item.with_tax_price %>（<%= @item.price %>）円</div>
 <div>販売ステータス</div>
 
- <%= link_to "編集する","/admin/items/#{@item.id}/edit" %>
+ <%= link_to "編集する","/admin/items/#{@item.id}/edit" ,class: "btn btn-success"%>

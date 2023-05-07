@@ -1,6 +1,6 @@
-<h1>会員一覧</h1><%#= link_to "編集する","/customers/#{@customer.id}/edit" %>
+<h1>会員一覧</h1>
 
- <table>
+ <table class="table">
   <thead>
     <tr>
      <th>会員ID</th>
@@ -22,3 +22,4 @@
     <% end %>
   </tbody>
 </table>
+<%= paginate @customers %>

@@ -1,7 +1,7 @@
-<h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h2>
+<h3><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h3>
 
 <%= form_with model:@customer,url: admin_customer_path(@customer), method: :patch do |f| %>
-<table>
+<table class="table table-borderless">
 <tr><th>会員ID</th>　<td><%= @customer.id %></td></tr>
   <tr><th>氏名</th> <td><%= f.text_field:last_name %>　<%= f.text_field:first_name %></td></tr>
   <tr><th>フリガナ</th> <td><%= f.text_field:last_name_kana %>　<%= f.text_field:first_name_kana %></td></tr>
@@ -13,7 +13,7 @@
   <%= f.radio_button :is_deleted, "false" %><%= f.label :false, "有効" %>
   <%= f.radio_button :is_deleted, "tlue" %><%= f.label :tlue, "退会" %></td></tr>
       <!--enumがまだ使えていない-->
-  <tr><th>　</th> <td><%= f.submit "変更を保存" %></td></tr>
+  <tr><th>　</th> <td><%= f.submit "変更を保存" ,class: "btn btn-success"%></td></tr>
 </table>
 
 <% end %>
